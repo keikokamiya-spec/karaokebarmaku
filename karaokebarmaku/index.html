@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>カラオケBar まぁーく | 大阪・兵庫の夜をもっと楽しく</title>
+<meta name="description" content="大阪・兵庫エリアのカラオケBar「まぁーく」。カラオケ・お酒・料理を心ゆくまで楽しめる大人の隠れ家バー。お一人様・グループ大歓迎。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: #0a0a0f;
+  color: #f0e6d3;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* ===== VARIABLES ===== */
+:root {
+  --gold: #d4a843;
+  --neon-pink: #ff3b82;
+  --dark: #0a0a0f;
+  --dark2: #12121a;
+  --dark3: #1a1a26;
+  --text: #f0e6d3;
+  --muted: #8a8090;
+  --radius: 8px;
+}
+
+/* ===== HEADER ===== */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(10,10,15,.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(212,168,67,.18);
+  padding: 12px 0;
+  transition: padding .3s;
+}
+.header-inner {
+  width: 92%; max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.site-logo {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .1em;
+}
+.site-logo span { color: var(--text); font-size: 1rem; font-weight: 400; }
+nav.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+nav.main-nav ul li a {
+  font-size: .9rem;
+  color: var(--text);
+  letter-spacing: .06em;
+  transition: color .2s;
+  font-weight: 500;
+}
+nav.main-nav ul li a:hover { color: var(--gold); }
+
+/* hamburger */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+.hamburger-btn span {
+  display: block; width: 26px; height: 2px;
+  background: var(--text); border-radius: 2px; transition: all .3s;
+}
+.hamburger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger-btn.open span:nth-child(2) { opacity: 0; }
+.hamburger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ===== HERO ===== */
+.hero-section {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  background-image: url('../トップ.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll;
+  opacity: .45;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10,10,15,.75) 0%, rgba(26,26,38,.65) 100%);
+}
+.hero-body {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 80px 20px 40px;
+}
+.hero-badge {
+  display: inline-block;
+  padding: 5px 20px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: .78rem;
+  letter-spacing: .2em;
+  font-family: 'Oswald', sans-serif;
+  margin-bottom: 20px;
+}
+.hero-body h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: .1em;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.hero-body h1 .accent { color: var(--gold); }
+.hero-body p {
+  font-size: clamp(.95rem, 2.5vw, 1.15rem);
+  color: rgba(240,230,211,.8);
+  margin-bottom: 36px;
+  letter-spacing: .04em;
+}
+.hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  padding: 14px 36px;
+  background: var(--gold);
+  color: #0a0a0f;
+  font-weight: 900;
+  font-size: .95rem;
+  letter-spacing: .08em;
+  border-radius: 2px;
+  transition: opacity .2s, transform .2s;
+}
+.btn-primary:hover { opacity: .88; transform: translateY(-2px); }
+.btn-outline {
+  padding: 14px 36px;
+  border: 2px solid var(--text);
+  color: var(--text);
+  font-weight: 700;
+  font-size: .95rem;
+  letter-spacing: .08em;
+  border-radius: 2px;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+/* ===== SECTION ===== */
+.lp-section { padding: 90px 0; }
+.section-inner { width: 92%; max-width: 1100px; margin: 0 auto; }
+.section-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .08em;
+  display: block;
+}
+.section-sublabel {
+  display: block;
+  font-size: .88rem;
+  color: var(--muted);
+  letter-spacing: .12em;
+  margin-bottom: 48px;
+}
+
+/* ===== ABOUT / SPEECH BUBBLES ===== */
+.about-section { background: var(--dark2); }
+.about-top-img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 56px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.6);
+}
+.bubble-list { display: flex; flex-direction: column; gap: 32px; }
+.bubble {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.bubble.right { flex-direction: row-reverse; }
+.bubble-icon {
+  width: 56px; height: 56px;
+  background: var(--dark3);
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.bubble-body {
+  background: var(--dark3);
+  border: 1px solid rgba(212,168,67,.2);
+  border-radius: 0 16px 16px 16px;
+  padding: 18px 22px;
+  max-width: 72%;
+  position: relative;
+}
+.bubble.right .bubble-body { border-radius: 16px 0 16px 16px; }
+.bubble-body::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -10px;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 0 0 12px 12px;
+  border-color: transparent transparent rgba(212,168,67,.2) transparent;
+}
+.bubble.right .bubble-body::before {
+  left: auto; right: -10px;
+  border-width: 0 12px 12px 0;
+  border-color: transparent rgba(212,168,67,.2) transparent transparent;
+}
+.bubble-body h3 {
+  font-size: 1rem; font-weight: 700;
+  color: var(--gold); margin-bottom: 6px;
+}
+.bubble-body p { font-size: .92rem; color: #c8bfb2; }
+
+/* ===== FEATURES ===== */
+.features-section { background: var(--dark); }
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.feat-card {
+  background: var(--dark3);
+  border: 1px solid rgba(212,168,67,.15);
+  border-radius: var(--radius);
+  padding: 32px 22px;
+  text-align: center;
+  transition: border-color .3s, transform .3s;
+}
+.feat-card:hover { border-color: var(--gold); transform: translateY(-6px); }
+.feat-card .feat-icon { font-size: 2.4rem; margin-bottom: 16px; }
+.feat-card h4 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .06em;
+  margin-bottom: 10px;
+}
+.feat-card p { font-size: .88rem; color: #b0a899; line-height: 1.75; }
+
+/* ===== GALLERY ===== */
+.gallery-lp-section { background: var(--dark2); }
+.img-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.img-grid-item { position: relative; overflow: hidden; border-radius: var(--radius); }
+.img-grid-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform .4s;
+}
+.img-grid-item:hover img { transform: scale(1.06); }
+.img-grid-item span {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,.7));
+  color: #fff;
+  font-size: .82rem;
+  padding: 16px 10px 8px;
+  text-align: center;
+}
+/* Wide item spanning 2 cols */
+.img-grid-item.wide { grid-column: span 2; }
+.img-grid-item.wide img { height: 220px; }
+
+/* ===== ACCESS ===== */
+.access-lp-section { background: var(--dark3); }
+.access-two-col {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: start;
+}
+.access-map-wrap iframe {
+  width: 100%;
+  height: 360px;
+  border: none;
+  border-radius: var(--radius);
+  display: block;
+  opacity: .85;
+}
+.access-info-table { width: 100%; border-collapse: collapse; }
+.access-info-table tr + tr td,
+.access-info-table tr + tr th { border-top: 1px solid rgba(255,255,255,.08); }
+.access-info-table th {
+  padding: 14px 8px;
+  text-align: left;
+  font-size: .9rem;
+  color: var(--gold);
+  font-weight: 700;
+  white-space: nowrap;
+  width: 7em;
+  vertical-align: top;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: .04em;
+}
+.access-info-table td {
+  padding: 14px 8px;
+  font-size: .9rem;
+  color: #d0c8bc;
+  vertical-align: top;
+}
+.access-tel {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--gold);
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: .06em;
+}
+.access-btns { margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
+.access-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 20px;
+  font-size: .92rem;
+  font-weight: 700;
+  border-radius: 2px;
+  transition: opacity .2s, transform .2s;
+  letter-spacing: .04em;
+}
+.access-btn:hover { opacity: .85; transform: translateY(-2px); }
+.btn-gold { background: var(--gold); color: #0a0a0f; }
+.btn-tel { background: var(--neon-pink); color: #fff; }
+
+/* ===== FIXED PHONE BUTTON ===== */
+.fixed-tel {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 200;
+  background: var(--neon-pink);
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 20px rgba(255,59,130,.5);
+  animation: pulseTel 2.5s ease-in-out infinite;
+}
+@keyframes pulseTel {
+  0%, 100% { box-shadow: 0 4px 20px rgba(255,59,130,.5); }
+  50% { box-shadow: 0 4px 36px rgba(255,59,130,.85); }
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: #06060a;
+  text-align: center;
+  padding: 48px 20px;
+  border-top: 1px solid rgba(212,168,67,.15);
+}
+.footer-logo {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .1em;
+  margin-bottom: 12px;
+}
+footer p { font-size: .85rem; color: var(--muted); margin-bottom: 4px; }
+.footer-copy { margin-top: 20px; font-size: .78rem; color: #4a4550; }
+
+/* ===== FADE IN ===== */
+.js-fade { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+.js-fade.in { opacity: 1; transform: translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .img-grid { grid-template-columns: repeat(2, 1fr); }
+  .img-grid-item.wide { grid-column: span 1; }
+}
+
+@media (max-width: 768px) {
+  nav.main-nav {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    background: rgba(10,10,15,.97);
+    z-index: 200;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  nav.main-nav.open { display: flex; }
+  nav.main-nav ul { flex-direction: column; align-items: center; gap: 36px; }
+  nav.main-nav ul li a { font-size: 1.3rem; }
+  .hamburger-btn { display: flex; z-index: 300; position: relative; }
+
+  .about-top-img { height: 220px; }
+  .bubble { flex-direction: column !important; }
+  .bubble.right { flex-direction: column !important; }
+  .bubble-body { max-width: 100%; }
+  .bubble-body::before, .bubble.right .bubble-body::before { display: none; }
+
+  .features-grid { grid-template-columns: 1fr; }
+  .img-grid { grid-template-columns: 1fr 1fr; }
+  .img-grid-item.wide { grid-column: span 1; }
+
+  .access-two-col { grid-template-columns: 1fr; }
+  .access-map-wrap iframe { height: 270px; }
+  .access-info-table th,
+  .access-info-table td { display: block; width: 100%; }
+  .access-info-table th { padding-bottom: 2px; border-top: none !important; }
+  .access-info-table td { padding-top: 2px; padding-left: 0; }
+  .access-info-table tr + tr th { border-top: 1px solid rgba(255,255,255,.08) !important; padding-top: 14px; }
+
+  .lp-section { padding: 60px 0; }
+  .hero-body h1 { font-size: 2.2rem; }
+  .hero-ctas { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-outline { width: 100%; max-width: 280px; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .img-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Fixed Tel Button -->
+<a href="tel:0798526722" class="fixed-tel" aria-label="電話する">
+  <i class="fas fa-phone"></i>
+</a>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <div class="site-logo">まぁーく <span>KARAOKE BAR</span></div>
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#access">Access</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger-btn" id="hamburgerBtn" aria-expanded="false" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- Hero -->
+  <section class="hero-section">
+    <div class="hero-bg-img"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-body">
+      <span class="hero-badge">KARAOKE BAR まぁーく</span>
+      <h1>歌って、飲んで、<br><span class="accent">最高の夜を。</span></h1>
+      <p>カラオケ・お酒・料理が揃った大人の隠れ家バー。<br>お一人様からグループまで、みんなで楽しめる空間です。</p>
+      <div class="hero-ctas">
+        <a href="tel:0798526722" class="btn-primary"><i class="fas fa-phone"></i>&ensp;今すぐ予約</a>
+        <a href="#about" class="btn-outline">お店について</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="lp-section about-section">
+    <div class="section-inner">
+      <span class="section-label">About</span>
+      <span class="section-sublabel">カラオケBar まぁーく について</span>
+      <img src="../外観.jpg" alt="カラオケBar まぁーく 外観" class="about-top-img js-fade">
+      <div class="bubble-list">
+        <div class="bubble js-fade">
+          <div class="bubble-icon">🎤</div>
+          <div class="bubble-body">
+            <h3>カラオケ＋バーの最強コンビ</h3>
+            <p>本格カラオケ設備と充実したドリンクメニューを一つの空間で。歌いながら飲んで、最高の夜を過ごしてください。</p>
+          </div>
+        </div>
+        <div class="bubble right js-fade">
+          <div class="bubble-icon">🍻</div>
+          <div class="bubble-body">
+            <h3>お一人様大歓迎</h3>
+            <p>「一人でも気軽に入れるバーがほしい」そんな声に応えました。カウンター席でゆっくり飲むだけでもOK。常連さんもみんな最初はひとりでした。</p>
+          </div>
+        </div>
+        <div class="bubble js-fade">
+          <div class="bubble-icon">🍽️</div>
+          <div class="bubble-body">
+            <h3>こだわりのフードメニュー</h3>
+            <p>お酒に合うおつまみから、しっかり食べたい方のためのフードまで。素材にこだわった手作り料理をご用意しています。</p>
+          </div>
+        </div>
+        <div class="bubble right js-fade">
+          <div class="bubble-icon">🌃</div>
+          <div class="bubble-body">
+            <h3>グループでも盛り上がる</h3>
+            <p>誕生日会・飲み会・2次会にも最適。貸切のご相談も承りますので、お気軽にお電話ください。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="lp-section features-section">
+    <div class="section-inner">
+      <span class="section-label">Features</span>
+      <span class="section-sublabel">まぁーくの3つの魅力</span>
+      <div class="features-grid">
+        <div class="feat-card js-fade">
+          <div class="feat-icon">🎵</div>
+          <h4>本格カラオケ</h4>
+          <p>最新機器を完備。DAMの最新楽曲から懐かしの名曲まで、バリエーション豊富に楽しめます。</p>
+        </div>
+        <div class="feat-card js-fade">
+          <div class="feat-icon">🍸</div>
+          <h4>充実ドリンク</h4>
+          <p>生ビール・カクテル・ウイスキー・ハイボール・ノンアルコールまで幅広くご用意。飲み放題プランも相談可。</p>
+        </div>
+        <div class="feat-card js-fade">
+          <div class="feat-icon">💫</div>
+          <h4>アットホームな雰囲気</h4>
+          <p>初めてのお客様もすぐに打ち解けられる、温かく居心地のよい空間づくりを大切にしています。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="lp-section gallery-lp-section">
+    <div class="section-inner">
+      <span class="section-label">Gallery</span>
+      <span class="section-sublabel">店内・お料理・お酒</span>
+      <div class="img-grid">
+        <div class="img-grid-item wide js-fade">
+          <img src="../店内雰囲気.jpg" alt="店内雰囲気">
+          <span>店内雰囲気</span>
+        </div>
+        <div class="img-grid-item js-fade">
+          <img src="../店内1.jpg" alt="店内1">
+          <span>カウンター席</span>
+        </div>
+        <div class="img-grid-item js-fade">
+          <img src="../店内2.jpg" alt="店内2">
+          <span>テーブル席</span>
+        </div>
+        <div class="img-grid-item js-fade">
+          <img src="../料理.jpg" alt="料理">
+          <span>手作りおつまみ</span>
+        </div>
+        <div class="img-grid-item js-fade">
+          <img src="../お酒.jpg" alt="お酒">
+          <span>こだわりのお酒</span>
+        </div>
+        <div class="img-grid-item js-fade">
+          <img src="../ビール.jpg" alt="ビール">
+          <span>生ビール</span>
+        </div>
+        <div class="img-grid-item wide js-fade">
+          <img src="../店内雰囲気2.jpg" alt="店内雰囲気2">
+          <span>賑やかな夜の一幕</span>
+        </div>
+        <div class="img-grid-item js-fade">
+          <img src="../外観.jpg" alt="外観">
+          <span>外観</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Access -->
+  <section id="access" class="lp-section access-lp-section">
+    <div class="section-inner">
+      <span class="section-label">Access</span>
+      <span class="section-sublabel">店舗情報・アクセス</span>
+      <div class="access-two-col">
+        <div class="access-map-wrap js-fade">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.3581983443555!2d135.18854947574437!3d34.69614427292129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60008fcd45c3a483%3A0xc6de4bb4c0c5f91!2z44Kr44Op44Kq44Kx44OQ44O8IOOBvuOBgeODvOOBjw!5e0!3m2!1sja!2sjp!4v1781087128764!5m2!1sja!2sjp"
+            width="100%" height="360" style="border:0;display:block;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="js-fade">
+          <table class="access-info-table">
+            <tr>
+              <th>店名</th>
+              <td>カラオケBar まぁーく</td>
+            </tr>
+            <tr>
+              <th>住所</th>
+              <td>〒663-8035<br>兵庫県西宮市北口町1-27<br>ロイヤルハイツ甲子園302</td>
+            </tr>
+            <tr>
+              <th>最寄り駅</th>
+              <td>阪神電車「甲子園駅」北口 徒歩約2分</td>
+            </tr>
+            <tr>
+              <th>電話番号</th>
+              <td><a href="tel:0798526722" class="access-tel">079-852-6722</a></td>
+            </tr>
+            <tr>
+              <th>営業時間</th>
+              <td>
+                月〜土　18:00〜翌3:00<br>
+                日・祝　17:00〜翌1:00<br>
+                <small style="color:var(--muted);font-size:.82rem;">※変更になる場合があります</small>
+              </td>
+            </tr>
+            <tr>
+              <th>定休日</th>
+              <td>不定休</td>
+            </tr>
+          </table>
+          <div class="access-btns">
+            <a href="https://www.google.com/maps/search/?api=1&query=カラオケBar+まぁーく+兵庫県西宮市甲子園"
+               target="_blank" class="access-btn btn-gold">
+              <i class="fas fa-map-marker-alt"></i> Googleマップで開く
+            </a>
+            <a href="tel:0798526722" class="access-btn btn-tel">
+              <i class="fas fa-phone"></i> 電話で予約・問い合わせ
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-logo">KARAOKE BAR まぁーく</div>
+  <p>〒663-8035 兵庫県西宮市北口町1-27 ロイヤルハイツ甲子園302</p>
+  <p><a href="tel:0798526722" style="color:var(--gold);">079-852-6722</a></p>
+  <p class="footer-copy">&copy; 2026 カラオケBar まぁーく. All Rights Reserved.</p>
+</footer>
+
+<script>
+// Hamburger
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mainNav = document.getElementById('mainNav');
+if (hamburgerBtn && mainNav) {
+  hamburgerBtn.addEventListener('click', () => {
+    const isOpen = mainNav.classList.toggle('open');
+    hamburgerBtn.classList.toggle('open', isOpen);
+    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+  });
+  mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('open');
+      hamburgerBtn.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+// Fade in
+const fadeEls = document.querySelectorAll('.js-fade');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, { threshold: 0.08 });
+fadeEls.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
