@@ -298,6 +298,58 @@ nav.main-nav ul li a:hover { color: var(--gold); }
 .img-grid-item.wide { grid-column: span 2; }
 .img-grid-item.wide img { height: 220px; }
 
+/* ===== CAROUSEL (mobile only) ===== */
+.gallery-carousel { display: none; }
+.carousel-track-wrap { overflow: hidden; border-radius: var(--radius); }
+.carousel-track {
+  display: flex;
+  transition: transform .35s ease;
+}
+.carousel-slide {
+  flex: 0 0 100%;
+  position: relative;
+}
+.carousel-slide img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+.carousel-slide span {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,.72));
+  color: #fff;
+  font-size: .85rem;
+  padding: 20px 12px 10px;
+  text-align: center;
+}
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+.carousel-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.3);
+  transition: background .25s, transform .25s;
+  cursor: pointer;
+}
+.carousel-dot.active {
+  background: var(--gold);
+  transform: scale(1.3);
+}
+.carousel-counter {
+  text-align: center;
+  margin-top: 8px;
+  font-size: .8rem;
+  color: var(--muted);
+  letter-spacing: .08em;
+}
+
 /* ===== ACCESS ===== */
 .access-lp-section { background: var(--dark3); }
 .access-two-col {
@@ -455,12 +507,17 @@ footer p { font-size: .85rem; color: var(--muted); margin-bottom: 4px; }
 @media (max-width: 480px) {
   .img-grid { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 768px) {
+  .img-grid { display: none; }
+  .gallery-carousel { display: block; }
+}
 </style>
 </head>
 <body>
 
 <!-- Fixed Tel Button -->
-<a href="tel:0798526722" class="fixed-tel" aria-label="電話する">
+<a href="tel:07012446746" class="fixed-tel" aria-label="電話する">
   <i class="fas fa-phone"></i>
 </a>
 
@@ -493,7 +550,7 @@ footer p { font-size: .85rem; color: var(--muted); margin-bottom: 4px; }
       <h1>歌って、飲んで、<br><span class="accent">最高の夜を。</span></h1>
       <p>カラオケ・お酒・料理が揃った大人の隠れ家バー。<br>お一人様からグループまで、みんなで楽しめる空間です。</p>
       <div class="hero-ctas">
-        <a href="tel:0798526722" class="btn-primary"><i class="fas fa-phone"></i>&ensp;今すぐ予約</a>
+        <a href="tel:07012446746" class="btn-primary"><i class="fas fa-phone"></i>&ensp;今すぐ予約</a>
         <a href="#about" class="btn-outline">お店について</a>
       </div>
     </div>
@@ -568,6 +625,8 @@ footer p { font-size: .85rem; color: var(--muted); margin-bottom: 4px; }
     <div class="section-inner">
       <span class="section-label">Gallery</span>
       <span class="section-sublabel">店内・お料理・お酒</span>
+
+      <!-- PC: grid -->
       <div class="img-grid">
         <div class="img-grid-item wide js-fade">
           <img src="../店内雰囲気.jpg" alt="店内雰囲気">
@@ -602,6 +661,25 @@ footer p { font-size: .85rem; color: var(--muted); margin-bottom: 4px; }
           <span>外観</span>
         </div>
       </div>
+
+      <!-- Mobile: carousel -->
+      <div class="gallery-carousel" id="galleryCarousel">
+        <div class="carousel-track-wrap">
+          <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-slide"><img src="../店内雰囲気.jpg" alt="店内雰囲気"><span>店内雰囲気</span></div>
+            <div class="carousel-slide"><img src="../店内1.jpg" alt="店内1"><span>カウンター席</span></div>
+            <div class="carousel-slide"><img src="../店内2.jpg" alt="店内2"><span>テーブル席</span></div>
+            <div class="carousel-slide"><img src="../料理.jpg" alt="料理"><span>手作りおつまみ</span></div>
+            <div class="carousel-slide"><img src="../お酒.jpg" alt="お酒"><span>こだわりのお酒</span></div>
+            <div class="carousel-slide"><img src="../ビール.jpg" alt="ビール"><span>生ビール</span></div>
+            <div class="carousel-slide"><img src="../店内雰囲気2.jpg" alt="店内雰囲気2"><span>賑やかな夜の一幕</span></div>
+            <div class="carousel-slide"><img src="../外観.jpg" alt="外観"><span>外観</span></div>
+          </div>
+        </div>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <div class="carousel-counter" id="carouselCounter"></div>
+      </div>
+
     </div>
   </section>
 
@@ -625,35 +703,30 @@ footer p { font-size: .85rem; color: var(--muted); margin-bottom: 4px; }
             </tr>
             <tr>
               <th>住所</th>
-              <td>〒663-8035<br>兵庫県西宮市北口町1-27<br>ロイヤルハイツ甲子園302</td>
+              <td>〒650-0011<br>兵庫県神戸市中央区中山手通１丁目１７−１４<br>ゴールドウッズ東門タワービル 2階</td>
             </tr>
             <tr>
               <th>最寄り駅</th>
-              <td>阪神電車「甲子園駅」北口 徒歩約2分</td>
+              <td>神戸市営地下鉄西神・山手線<br>「三宮(神戸市営)駅」東出口８より徒歩約6分</td>
             </tr>
             <tr>
               <th>電話番号</th>
-              <td><a href="tel:0798526722" class="access-tel">079-852-6722</a></td>
+              <td><a href="tel:07012446746" class="access-tel">070-1244-6746</a></td>
             </tr>
             <tr>
               <th>営業時間</th>
               <td>
-                月〜土　18:00〜翌3:00<br>
-                日・祝　17:00〜翌1:00<br>
+                月〜日　18:00〜翌6:00<br>
                 <small style="color:var(--muted);font-size:.82rem;">※変更になる場合があります</small>
               </td>
             </tr>
             <tr>
               <th>定休日</th>
-              <td>不定休</td>
+              <td>火曜日</td>
             </tr>
           </table>
           <div class="access-btns">
-            <a href="https://www.google.com/maps/search/?api=1&query=カラオケBar+まぁーく+兵庫県西宮市甲子園"
-               target="_blank" class="access-btn btn-gold">
-              <i class="fas fa-map-marker-alt"></i> Googleマップで開く
-            </a>
-            <a href="tel:0798526722" class="access-btn btn-tel">
+            <a href="tel:07012446746" class="access-btn btn-tel">
               <i class="fas fa-phone"></i> 電話で予約・問い合わせ
             </a>
           </div>
@@ -666,8 +739,8 @@ footer p { font-size: .85rem; color: var(--muted); margin-bottom: 4px; }
 
 <footer>
   <div class="footer-logo">KARAOKE BAR まぁーく</div>
-  <p>〒663-8035 兵庫県西宮市北口町1-27 ロイヤルハイツ甲子園302</p>
-  <p><a href="tel:0798526722" style="color:var(--gold);">079-852-6722</a></p>
+  <p>〒650-0011 兵庫県神戸市中央区中山手通１丁目１７−１４ ゴールドウッズ東門タワービル 2階</p>
+  <p><a href="tel:07012446746" style="color:var(--gold);">070-1244-6746</a></p>
   <p class="footer-copy">&copy; 2026 カラオケBar まぁーく. All Rights Reserved.</p>
 </footer>
 
@@ -689,6 +762,42 @@ if (hamburgerBtn && mainNav) {
     });
   });
 }
+
+// Carousel
+(function() {
+  const track = document.getElementById('carouselTrack');
+  const dotsWrap = document.getElementById('carouselDots');
+  const counter = document.getElementById('carouselCounter');
+  if (!track) return;
+  const slides = track.querySelectorAll('.carousel-slide');
+  const total = slides.length;
+  let current = 0;
+
+  // build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function goTo(idx) {
+    current = (idx + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    counter.textContent = `${current + 1} / ${total}`;
+  }
+
+  goTo(0);
+
+  // touch swipe
+  let startX = 0;
+  track.parentElement.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  track.parentElement.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+  });
+})();
 
 // Fade in
 const fadeEls = document.querySelectorAll('.js-fade');
